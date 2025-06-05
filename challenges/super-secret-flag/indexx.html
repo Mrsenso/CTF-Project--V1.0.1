@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎉 Hidden Flag Found!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #00ff99;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #00ff99, 0 0 20px #009966;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    pre {
+      background-color: #111;
+      color: #00ff00;
+      padding: 15px;
+      border-left: 5px solid #00cc00;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00ff00;
+      font-size: 1.1rem;
+      width: fit-content;
+      max-width: 90%;
+      text-align: left;
+    }
+
+    code {
+      background: #222;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #00ffff;
+    }
+
+    .edu-section {
+      margin-top: 40px;
+      background: #111;
+      padding: 20px;
+      border-left: 4px solid #ff4444;
+      max-width: 700px;
+      color: #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff4444;
+      text-align: left;
+    }
+
+    .edu-section h3 {
+      color: #ff4444;
+      margin-bottom: 10px;
+    }
+
+    .edu-section p {
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎯 Congratulations Hacker!</h2>
+  <p>You discovered a disallowed directory listed in <code>robots.txt</code>. Nice recon!</p>
+
+  <pre>flag{robots_txt_found}</pre>
+
+  <div class="edu-section">
+    <h3>📘 About the Attack</h3>
+    <p><strong>robots.txt</strong> is a file used by websites to tell search engine crawlers which pages or directories should not be indexed.</p>
+    <p>However, this file is publicly accessible and can be viewed by anyone — including attackers. If it contains sensitive or hidden paths, those paths can easily be discovered by simply visiting <code>/robots.txt</code>.</p>
+    <p>💡 <strong>Lesson:</strong> Never store sensitive information or directories in <code>robots.txt</code>. It is not a security mechanism. Always protect important resources using authentication and authorization mechanisms instead of relying on obscurity.</p>
+  </div>
+
+  <script>
+    localStorage.setItem("robots-txt", "completed");
+  </script>
+</body>
+</html>

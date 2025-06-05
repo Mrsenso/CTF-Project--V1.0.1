@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>XSS Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0b0c10;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      padding: 40px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00cc66;
+      margin-bottom: 20px;
+    }
+
+    p, li {
+      color: #bfbfbf;
+      font-size: 1.1rem;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1rem;
+      width: 300px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      background-color: #1f1f1f;
+      color: #00ff00;
+      box-shadow: 0 0 5px #00ff00;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-left: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #111;
+      color: #00ff00;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ff00;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #002200;
+      box-shadow: 0 0 15px #00ff00;
+    }
+
+    .info-section {
+      margin-top: 40px;
+      background-color: #111;
+      border-left: 5px solid #ff4444;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff4444;
+    }
+
+    code {
+      background: #222;
+      color: #00ff00;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-family: monospace;
+      box-shadow: 0 0 5px #00ff00;
+    }
+
+    .completed {
+      background-color: #003300;
+      border-left: 5px solid #00cc00;
+      padding: 15px;
+      color: #00ff00;
+      margin-top: 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00cc00;
+    }
+
+    a {
+      color: #ff4444;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-shadow: 0 0 10px #ff4444;
+    }
+  </style>
+</head>
+<body>
+  <h2>Challenge 1: XSS Input</h2>
+  <p>Try to inject a script that displays an alert (e.g., <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code>).</p>
+
+  <form onsubmit="handleSubmit(event)">
+    <input type="text" id="input" placeholder="Enter your input" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="output"></div>
+  <div id="completionStatus"></div>
+
+  <div class="info-section">
+    <h3>🔍 What is XSS?</h3>
+    <p><strong>Cross-Site Scripting (XSS)</strong> allows attackers to inject malicious JavaScript into web apps.</p>
+
+    <h4>💥 Example Attack:</h4>
+    <p>Try something like: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code></p>
+
+    <h4>🛡️ How to Prevent XSS:</h4>
+    <ul>
+      <li>Sanitize and escape all user inputs.</li>
+      <li>Use libraries like <code>DOMPurify</code>.</li>
+      <li>Enforce Content Security Policies (CSP).</li>
+    </ul>
+
+    <h4>📚 Learn More:</h4>
+    <p><a href="https://owasp.org/www-community/attacks/xss/" target="_blank">OWASP XSS Guide</a></p>
+  </div>
+
+  <script>
+    const challengeKey = "xss-challenge-1";
+
+    // Show completed status on page load
+    window.onload = () => {
+      if (localStorage.getItem(challengeKey) === "completed") {
+        showCompletionMessage();
+      }
+    };
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      const userInput = document.getElementById("input").value;
+      document.getElementById("output").innerHTML = "🧪 You entered: " + userInput;
+
+      const xssPattern = /<script.*?>|onerror\s*=|onload\s*=|<img.*?>|<svg.*?>/i;
+
+      if (xssPattern.test(userInput)) {
+        setTimeout(() => {
+          alert("🎉 You have successfully discovered XSS in our site. Congratulations, buddy!");
+        }, 300);
+
+        localStorage.setItem(challengeKey, "completed");
+        showCompletionMessage();
+      }
+    }
+
+    function showCompletionMessage() {
+      document.getElementById("completionStatus").innerHTML = `
+        <div class="completed">✅ Challenge Completed! Great job, hacker! 🎉</div>
+      `;
+    }
+  </script>
+</body>
+</html>

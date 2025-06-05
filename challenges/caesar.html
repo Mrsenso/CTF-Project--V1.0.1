@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🔐 Caesar Cipher Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px #00ff00;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    code {
+      background: #111;
+      color: #0ff;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 1.1rem;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      width: 300px;
+      background-color: #111;
+      color: #0f0;
+      border: 2px solid #0f0;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      background-color: #0f0;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.1rem;
+    }
+
+    .edu-section {
+      margin-top: 40px;
+      background: #111;
+      padding: 20px;
+      border-left: 4px solid #ff4444;
+      max-width: 700px;
+      color: #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff4444;
+      text-align: left;
+    }
+
+    .edu-section h3 {
+      color: #ff4444;
+      margin-bottom: 10px;
+    }
+
+    .edu-section p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .edu-section ul {
+      margin-top: 10px;
+    }
+
+    .edu-section ul li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔐 Challenge: Caesar Cipher</h2>
+  <p>We've intercepted an encrypted message. Can you decrypt it to find the flag?</p>
+
+  <div style="margin: 20px 0; padding: 10px; background: #111; border-left: 4px solid #0ff;">
+    <strong>🧩 Encrypted Message:</strong> <code>iodv{fdhvdub_lv_ixq}</code>
+  </div>
+
+  <form onsubmit="checkFlag(event)">
+    <input type="text" id="answer" placeholder="Enter the decrypted flag" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="result"></div>
+
+  <div class="edu-section">
+    <h3>📘 What You Learn: Caesar Cipher</h3>
+    <p>
+      The Caesar Cipher is a classic encryption technique where each letter is shifted by a fixed number of places in the alphabet. For example, with a shift of +3, <code>A → D</code>, <code>B → E</code>, etc.
+    </p>
+    <p>
+      The message you decrypted uses a Caesar shift of 3. The encrypted text was:
+      <code>iodv{fdhvdub_lv_ixq}</code> → <code>flag{*******}</code>.
+    </p>
+    <ul>
+      <li><strong>🧠 Attack Method:</strong> Brute-force all 25 possible shifts.</li>
+      <li><strong>🔎 Tool:</strong> Try using tools like <a href="https://www.dcode.fr/caesar-cipher" style="color: #0ff;" target="_blank">dCode Caesar Cipher Solver</a>.</li>
+      <li><strong>🚫 Real-World Use:</strong> Caesar is NOT secure today. It's used only for learning and CTFs.</li>
+    </ul>
+    <p><em>Know your history. Even simple ciphers can teach you complex thinking.</em></p>
+  </div>
+
+  <script>
+    function checkFlag(event) {
+      event.preventDefault();
+      const userInput = document.getElementById("answer").value.trim().toLowerCase();
+      const correctFlag = "flag{caesary_is_fun}";
+      const resultDiv = document.getElementById("result");
+
+      if (userInput === correctFlag) {
+        resultDiv.innerHTML = "<p style='color: #0f0;'>🎉 Correct! You've cracked the Caesar cipher.</p>";
+        localStorage.setItem("crypto-caesar", "completed");
+        alert("✅ Challenge completed!");
+      } else {
+        resultDiv.innerHTML = "<p style='color: red;'>❌ Incorrect. Try again!</p>";
+      }
+    }
+  </script>
+</body>
+</html>

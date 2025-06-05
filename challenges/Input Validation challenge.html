@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🧪 Input Validation Lab - Hacker Mode</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff99;
+      margin-bottom: 10px;
+    }
+
+    p, li {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    form {
+      margin-top: 30px;
+      background-color: #111;
+      padding: 25px;
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00ff00;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 300px;
+    }
+
+    input {
+      padding: 10px;
+      background-color: #000;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      background: #00ff00;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #00cc66;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    #output {
+      margin-top: 20px;
+      background-color: #111;
+      padding: 20px;
+      border: 1px solid #00ff00;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 700px;
+      word-wrap: break-word;
+    }
+
+    .edu-section {
+      margin-top: 40px;
+      padding: 25px;
+      background-color: #111;
+      border-left: 5px solid #ff4444;
+      border-radius: 10px;
+      color: #ccc;
+      box-shadow: 0 0 10px #ff4444;
+    }
+
+    code {
+      background: #222;
+      padding: 2px 4px;
+      border-radius: 4px;
+      color: #00ff00;
+    }
+
+    a {
+      color: #00ffff;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #ff4444;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧬 Input Validation Challenge</h1>
+  <p>🛡️ Only safe file names like <code>readme.txt</code> or <code>info.txt</code> are allowed.  
+  Try to bypass validation and access the hidden <code>flag.txt</code>.</p>
+
+  <form onsubmit="handleCheck(event)">
+    <input type="text" id="filename" placeholder="Enter filename (e.g., readme.txt)" required>
+    <button type="submit">Access</button>
+  </form>
+
+  <div id="output"></div>
+
+  <div class="edu-section">
+    <h2>📚 What is Path Traversal?</h2>
+    <p>
+      <strong>Path Traversal (a.k.a Directory Traversal)</strong> is a vulnerability that allows attackers to access files outside the intended directory by manipulating input paths.
+    </p>
+
+    <h3>💀 Example Attack:</h3>
+    <p>Try inputs like:</p>
+    <ul>
+      <li><code>../../flag.txt</code></li>
+      <li><code>../secret/flag.txt</code></li>
+      <li><code>../../etc/passwd</code> (on Linux)</li>
+    </ul>
+
+    <h3>🔐 How to Prevent Path Traversal:</h3>
+    <ul>
+      <li>Never use user input directly in file paths.</li>
+      <li>Whitelist only expected filenames (as we do in this challenge).</li>
+      <li>Use secure libraries and sanitization functions to normalize paths.</li>
+      <li>Restrict file access to a specific directory using <code>chroot</code> or similar techniques.</li>
+    </ul>
+
+    <h3>📖 Learn More:</h3>
+    <p>Visit <a href="https://owasp.org/www-community/attacks/Path_Traversal" target="_blank">OWASP Path Traversal Guide</a></p>
+  </div>
+
+  <script>
+  function handleCheck(e) {
+    e.preventDefault();
+    const file = document.getElementById("filename").value.trim().toLowerCase();
+    const output = document.getElementById("output");
+
+    const allowedFiles = ["readme.txt", "info.txt"];
+
+    if (file === "../../flag.txt" || file === "../flag.txt" || file.includes("flag")) {
+      output.innerHTML = `
+        <p><strong>🎉 Well done!</strong> You bypassed the input validation.</p>
+        <pre style="background:#222;padding:10px;border-left:4px solid green;">flag{input_validation_bypass}</pre>
+      `;
+    } else if (allowedFiles.includes(file)) {
+      output.innerHTML = `<p>✅ File <strong>${file}</strong> loaded successfully.</p>`;
+    } else {
+      output.innerHTML = `<p>❌ Access denied to <strong>${file}</strong>. Not an allowed file.</p>`;
+    }
+  }
+</script>
+
+</body>
+</html>

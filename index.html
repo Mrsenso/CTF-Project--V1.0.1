@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CTF Lab by Senso</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 50px;
+      font-size: 3rem;
+      color: #00ff99;
+      text-shadow: 0 0 10px #00ff99, 0 0 20px #009966;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #00cc66;
+      text-shadow: 0 0 5px #00cc66;
+      margin-top: 40px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 20px;
+      text-align: center;
+      color: #ccc;
+    }
+
+    .challenge-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    .challenge-list li {
+      background-color: #111;
+      border: 1px solid #00ff00;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .challenge-list li:hover {
+      background-color: #001100;
+      transform: scale(1.03);
+      box-shadow: 0 0 15px #00ff00;
+    }
+
+    .challenge-list a {
+      text-decoration: none;
+      color: #00ff00;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .challenge-list a:hover {
+      color: #ff4444;
+      text-shadow: 0 0 10px #ff4444;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+    }
+
+    footer p {
+      color: #555;
+    }
+
+    hr {
+      width: 60%;
+      border: 1px solid #00ff00;
+      margin-top: 30px;
+    }
+
+
+    h2:hover {
+  color: #ff4444;
+  text-shadow: 0 0 10px #ff4444;
+}
+
+  </style>
+</head>
+<body>
+  <h1>🛡️ IAA CyberClub CTF Lab</h1>
+  <p>Welcome to the CTF Lab! Test your skills on the challenges below.</p>
+
+ 
+
+ <!-- SIMPLE MODE -->
+<h2 onclick="toggleSection('simpleModeList')" style="cursor: pointer; text-decoration: underline;">
+  🟢 Simple Mode (Beginners)
+</h2>
+<ul id="simpleModeList" class="challenge-list" style="display: none;">
+  <li><a href="challenges/xss.html">Challenge 1: XSS Input</a></li>
+  <li><a href="challenges/hidden-flag.html">Challenge 2: Hidden Flag</a></li>
+  <li><a href="challenges/SQL.html">Challenge 3: SQL Injection</a></li>
+  <li><a href="challenges/URL-Manipulation.html">Challenge 4 :URL Manipulation </a></li>
+  <li><a href="challenges/Input Validation challenge.html">Challenge 5 : Input Validation </a></li>
+   <li><a href="robot.txt" target="_blank">Challenge 6 : robots.txt</a> (Try to explore it 👀)</li>
+<li><a href="challenges/caesar.html">Challenge 7: Caesar Cipher</a></li>
+  <li><a href="challenges/crypto.html">Challenge 8: Crypto challenge</a></li>
+  <li><a href="challenges/Steganography.html">Challenge 9: Steganography</a></li>
+  <li><a href="challenges/reverse.html">Challenge 10: Reverse Engineering</a></li>
+
+</ul>
+  
+
+<!-- MEDIUM MODE -->
+<h2 onclick="toggleSection('mediumModeList')" style="cursor: pointer; text-decoration: underline;">
+  🟡 Medium Mode (Intermediate & Experts)
+</h2>
+<ul id="mediumModeList" class="challenge-list" style="display: none;">
+  <li><a href="#">coming soon...</a></li>
+</ul>
+
+<!-- HELL MODE -->
+<h2 onclick="toggleSection('hellModeList')" style="cursor: pointer; text-decoration: underline;">
+  🔴 Hell Mode (Magicians & Witches)
+</h2>
+<ul id="hellModeList" class="challenge-list" style="display: none;">
+  <li><a href="#">coming soon...</a></li>
+</ul>
+
+
+<script>
+  function toggleSection(id) {
+    const section = document.getElementById(id);
+    section.style.display = (section.style.display === "none") ? "block" : "none";
+  }
+</script>
+
+
+  <footer>
+    <p>Created by Samwel Senso Mwita | For Educational Use Only</p>
+  </footer>
+</body>
+</html>

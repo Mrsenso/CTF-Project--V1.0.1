@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🧠 Reverse Engineering Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px #0f0;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.1rem;
+      text-align: center;
+      max-width: 700px;
+    }
+
+    form {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1rem;
+      background-color: #111;
+      color: #0f0;
+      border: 2px solid #0f0;
+      border-radius: 8px;
+      width: 320px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #0f0;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 5px #0f0;
+    }
+
+    #feedback {
+      margin-top: 20px;
+      font-size: 1.1rem;
+    }
+
+    pre {
+      background-color: #111;
+      color: #0f0;
+      border-left: 4px solid #0f0;
+      padding: 10px;
+      margin-top: 10px;
+      width: fit-content;
+    }
+
+    .hint-box {
+      background: #111;
+      border-left: 4px solid #ff9900;
+      color: #ccc;
+      padding: 20px;
+      margin-top: 30px;
+      max-width: 700px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff9900;
+    }
+
+    .hint-box h3 {
+      color: #ff9900;
+      margin-bottom: 10px;
+    }
+
+    .hint-box code {
+      color: #0ff;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔍 Reverse Engineering Challenge</h2>
+  <p>We’ve hidden the flag deep inside our logic. Your mission is to reverse the code and discover the flag!</p>
+
+  <div class="hint-box">
+    <h3>💡 Hints for Reversers</h3>
+    <p>Inspect the <code>&lt;script&gt;</code> section. Pay attention to encoded values and transformations like <code>reverse()</code> and <code>btoa()</code>.</p>
+    <p>You can also paste the JavaScript in your browser console to test and decode.</p>
+  </div>
+
+  <form onsubmit="checkFlag(event)">
+    <input type="text" id="userInput" placeholder="Enter the flag here..." required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="feedback"></div>
+
+  <script>
+    // The real flag is: flag{reverse_it_to_win}
+    function validate(input) {
+      const encoded = btoa(input.split("").reverse().join(""));
+      return encoded === "bml3X3RpaV9lc2xldnJlX2dhbGY=";
+    }
+
+    function checkFlag(event) {
+      event.preventDefault();
+      const userInput = document.getElementById("userInput").value.trim();
+      const feedback = document.getElementById("feedback");
+
+      if (validate(userInput)) {
+        feedback.innerHTML = `
+          <p style="color: #0f0;">✅ Correct! You reversed it like a pro!</p>
+          <pre>flag{reverse_it_to_win}</pre>
+        `;
+        localStorage.setItem("reverse-engineering", "completed");
+        alert("🎉 Challenge completed!");
+      } else {
+        feedback.innerHTML = `<p style="color: red;">❌ Nope, not the correct flag. Try inspecting the JS code!</p>`;
+      }
+    }
+  </script>
+</body>
+</html>

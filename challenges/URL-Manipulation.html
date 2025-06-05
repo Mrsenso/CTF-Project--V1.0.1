@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💻 URL Access Control Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px #00ff00;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-top: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    pre {
+      background-color: #111;
+      color: #00ff00;
+      padding: 15px;
+      border-left: 4px solid green;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00ff00;
+      text-align: left;
+      max-width: 90%;
+      margin: 20px auto;
+    }
+
+    code {
+      background: #222;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #00ffff;
+    }
+
+    .edu-section {
+      margin-top: 40px;
+      background: #111;
+      padding: 20px;
+      border-left: 4px solid #ff4444;
+      max-width: 700px;
+      color: #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff4444;
+      text-align: left;
+    }
+
+    .edu-section h3 {
+      color: #ff4444;
+      margin-bottom: 10px;
+    }
+
+    .edu-section p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔐 Challenge: URL Access Control</h2>
+  <p>Try to access the admin dashboard by manipulating the URL parameters.</p>
+  <p>💡 Hint: URLs can include parameters like <code>?admin=true</code> — can you spot the backdoor?</p>
+
+  <div id="message"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const isAdmin = params.get("admin");
+    const messageDiv = document.getElementById("message");
+
+    if (isAdmin === "true") {
+      messageDiv.innerHTML = `
+        <h3 style="color: #00ff99;">✅ Access Granted</h3>
+        <p>Nice! You've discovered the hidden admin bypass.</p>
+        <pre>flag{url_parameter_discovered}</pre>
+      `;
+      localStorage.setItem("url-manipulation", "completed");
+      alert("🎉 Congrats, you've completed the URL Manipulation challenge!");
+    } else {
+      messageDiv.innerHTML = `
+        <p style="color: red;">🚫 Access Denied: You are not an admin.</p>
+        <!-- 🤫 Maybe there's something in the URL we can change? -->
+      `;
+    }
+  </script>
+
+  <div class="edu-section">
+    <h3>📘 What You Learned</h3>
+    <p>This challenge demonstrates a common vulnerability: <strong>insecure access control via URL parameters</strong>.</p>
+    <p>Attackers can tamper with URL query parameters like <code>?admin=true</code> or <code>?role=admin</code> to gain unauthorized access to protected areas.</p>
+    <p>🔒 <strong>How to prevent it:</strong></p>
+    <ul>
+      <li>Never rely on client-side parameters to grant access.</li>
+      <li>Always verify user roles and permissions on the server side.</li>
+      <li>Implement session-based authentication and role checks.</li>
+      <li>Use secure frameworks and enforce authorization at every critical endpoint.</li>
+    </ul>
+    <p>Remember: Obscurity is not security. Every access control check must be enforced server-side!</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SQLi Challenge - Hacker Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #00ff99;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #00ff99, 0 0 20px #009966;
+    }
+
+    form {
+      background-color: #111;
+      padding: 30px;
+      border-radius: 10px;
+      border: 2px solid #00ff00;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      box-shadow: 0 0 15px #00ff00;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1rem;
+      background: #000;
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      background: #00ff00;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00cc66;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    .info-section {
+      margin-top: 40px;
+      background-color: #111;
+      padding: 20px;
+      border-left: 5px solid #ff4444;
+      color: #ccc;
+      max-width: 700px;
+      line-height: 1.6;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff4444;
+    }
+
+    code {
+      background: #222;
+      color: #00ff00;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    a {
+      color: #00ffff;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #ff4444;
+    }
+  </style>
+</head>
+<body>
+
+
+  <button id="resetButton" style="margin-top: 20px; background: #ff4444; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+  🔄 Reset Challenge
+</button>
+
+
+
+  <h1>🛡️ SQL Injection Challenge</h1>
+
+ <form onsubmit="handleLogin(event)">
+  <input type="text" id="username" placeholder="Username" required>
+  <input type="password" id="password" placeholder="Password" required>
+  <button type="submit">Login</button>
+</form>
+
+<!-- Add this missing element to show completion message -->
+<div id="completionMessage" style="display: none; margin-top: 20px; color: #00ff99; font-weight: bold;">
+  🎉 Challenge Completed!
+</div>
+
+
+  <div class="info-section">
+    <h2>💀 What is SQL Injection?</h2>
+    <p><strong>SQL Injection (SQLi)</strong> is a code injection technique that allows attackers to interfere with the queries that an application makes to its database.</p>
+
+    <h3>💡 Example Attack:</h3>
+    <p>Try entering: <code>' OR 1=1 --</code> as the password to bypass authentication.</p>
+
+    <h3>🛡️ How to Prevent SQLi:</h3>
+    <ul>
+      <li>Always use <strong>prepared statements</strong> or <strong>parameterized queries</strong>.</li>
+      <li>Never trust user input — <strong>sanitize and validate</strong> it.</li>
+      <li>Use <strong>ORMs</strong> (Object-Relational Mappers) which automatically escape inputs.</li>
+      <li>Enable proper <strong>error handling</strong> to avoid leaking SQL errors.</li>
+    </ul>
+
+    <h3>📚 Learn More:</h3>
+    <p>Visit <a href="https://owasp.org/www-community/attacks/SQL_Injection" target="_blank">OWASP SQLi Guide</a></p>
+  </div>
+
+ <script>
+  function handleLogin(e) {
+    e.preventDefault();
+    const u = document.getElementById("username").value;
+    const p = document.getElementById("password").value;
+
+    const completionMessage = document.getElementById("completionMessage");
+
+    // Fake SQL query simulation
+    if (u === "admin" && p === "admin123") {
+      alert("Welcome admin!");
+    } else if (p.includes("'") || p.toLowerCase().includes("1=1") || p.toLowerCase().includes("or")) {
+      alert("🎉 SQL Injection worked! Good work Hacker");
+      sessionStorage.setItem("sqli-basic", "completed");
+      completionMessage.style.display = "block";
+    } else {
+      alert("Invalid credentials.");
+    }
+  }
+
+  // Show message if already completed during this session
+  window.onload = function () {
+    if (sessionStorage.getItem("sqli-basic") === "completed") {
+      document.getElementById("completionMessage").style.display = "block";
+    }
+
+    // Attach reset functionality
+    document.getElementById("resetButton").addEventListener("click", function () {
+      sessionStorage.removeItem("sqli-basic");
+      document.getElementById("completionMessage").style.display = "none";
+      alert("Challenge has been reset.");
+      location.reload(); // Optional: remove if you don't want to refresh the page
+    });
+  };
+</script>
+ 
+</body>
+</html>

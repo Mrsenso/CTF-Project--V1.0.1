@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🕵️ Hidden Flag Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px #00ff00;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .edu-section {
+      margin-top: 40px;
+      background: #111;
+      padding: 20px;
+      border-left: 4px solid #ff4444;
+      max-width: 700px;
+      color: #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff4444;
+      text-align: left;
+    }
+
+    .edu-section h3 {
+      color: #ff4444;
+      margin-bottom: 10px;
+    }
+
+    .edu-section p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h2>🕵️‍♂️ Challenge: Console Secrets</h2>
+  <p>There’s no flag here on the screen...</p>
+  <p>💡 Hint: Real hackers go deeper. Check the <strong>developer console</strong>.</p>
+
+  <script>
+    console.log("%c👀 Curious minds find hidden truths...", "color: cyan; font-size: 16px;");
+    console.log("%cHint: Type %cgetFlag()%c to unlock the flag.", "color: yellow;", "color: lime; font-weight: bold;", "color: yellow;");
+
+    window.getFlag = function () {
+      console.log("%c🏁 Flag Unlocked: %cflag{Made it again H4cker i[m happy for you]}", "color: lightgreen;", "color: white; font-weight: bold;");
+      alert("✅ Flag challenge marked as complete!");
+      localStorage.setItem("console-flag", "completed");
+    };
+  </script>
+
+  <div class="edu-section">
+    <h3>📘 What You Learned</h3>
+    <p>This challenge introduces <strong>console-based Easter eggs</strong>. Some developers mistakenly log sensitive data like tokens, flags, or credentials to the browser console during debugging.</p>
+
+    <p><strong>Real-world risk:</strong> An attacker inspecting console logs could extract useful intel like JWT tokens, debug endpoints, or secrets left by careless devs.</p>
+
+    <p>🔒 <strong>How to avoid:</strong></p>
+    <ul>
+      <li>Avoid using <code>console.log()</code> for sensitive data.</li>
+      <li>Minify production JS or strip debug logs before deployment.</li>
+      <li>Use environment-based logging (e.g., only show logs in development mode).</li>
+    </ul>
+
+    <p><em>Inspect, question, explore — the console is a playground for curious hackers.</em></p>
+  </div>
+</body>
+</html>

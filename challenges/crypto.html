@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🔐 Base64 Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px #00ff00;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    code {
+      background: #111;
+      color: #0ff;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 1.1rem;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      width: 300px;
+      background-color: #111;
+      color: #0f0;
+      border: 2px solid #0f0;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      background-color: #0f0;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.1rem;
+    }
+
+    .edu-section {
+      margin-top: 40px;
+      background: #111;
+      padding: 20px;
+      border-left: 4px solid #ff9900;
+      max-width: 700px;
+      color: #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff9900;
+      text-align: left;
+    }
+
+    .edu-section h3 {
+      color: #ff9900;
+      margin-bottom: 10px;
+    }
+
+    .edu-section p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .edu-section ul {
+      margin-top: 10px;
+    }
+
+    .edu-section ul li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🧩 Crypto Challenge: Base64 Decode</h2>
+  <p>We found this encoded flag in the server logs. Can you decode it?</p>
+
+  <div style="margin: 15px 0; padding: 10px; background: #111; border-left: 4px solid #0ff;">
+    <strong>📜 Encoded Flag:</strong>
+    <code>ZmxhZ3tieTNfYmFzZTY0X2RlY29kZWR9</code>
+  </div>
+
+  <form onsubmit="checkFlag(event)">
+    <input type="text" id="userFlag" placeholder="Enter the decoded flag" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="result"></div>
+
+  <div class="edu-section">
+    <h3>📘 What You Learn: Base64 Encoding</h3>
+    <p>
+      Base64 is not encryption — it's just a way of representing binary data in ASCII text. It’s commonly used to encode data in email, URLs, and data transmission.
+    </p>
+    <ul>
+      <li><strong>🔍 Common Use:</strong> Storing or transferring binary data as text.</li>
+      <li><strong>💡 Hint:</strong> Try decoding the string using <a href="https://www.base64decode.org/" target="_blank" style="color: #0ff;">base64decode.org</a>.</li>
+      <li><strong>⚠️ Security Tip:</strong> Never trust hidden data like Base64 — it’s easily decoded!</li>
+    </ul>
+    <p>
+      Example: <code>Zm9v</code> → <code>foo</code> | <code>ZmxhZ3tieTNfYmFzZTY0X2RlY29kZWR9</code> → <code>flag{***********}</code>
+    </p>
+  </div>
+
+  <script>
+    function checkFlag(event) {
+      event.preventDefault();
+      const input = document.getElementById("userFlag").value.trim();
+      const correctFlag = "flag{by3_base64_decoded}";
+      const result = document.getElementById("result");
+
+      if (input === correctFlag) {
+        result.innerHTML = "<p style='color: #0f0;'>🎉 Correct! You've decoded the flag successfully.</p>";
+        localStorage.setItem("crypto-base64", "completed");
+        alert("✅ Challenge completed Good Job Hacker!");
+      } else {
+        result.innerHTML = "<p style='color: red;'>❌ Incorrect. Try again!</p>";
+      }
+    }
+  </script>
+</body>
+</html>
