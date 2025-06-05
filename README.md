@@ -55,7 +55,8 @@ This project is open-source and for **educational purposes only**. Please use it
 
  👨‍💻 Author
 
-Made with ❤️ by Samwel Senso Mwita
+Made with ❤️ by **Samwel Senso Mwita**
+
 Cybersecurity Analyst | Student at IAA University  
 📧 Email: sensosamwel63@gmail.com  
 🔗 GitHub: [mrsenso](https://github.com/mrsenso)
