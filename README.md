@@ -2,7 +2,7 @@
 
 Welcome to the **CTF Lab** – a hands-on, browser-based Capture The Flag platform built for students, beginners, and cybersecurity enthusiasts. This project is designed to help learners sharpen their skills in web security, cryptography, steganography, reverse engineering, and more.
 
-🌐 **Live Demo**: [Click here to visit the lab](https://mrsenso.github.io/CTF-Project--V1.0.1/)
+🌐 **Live Demo**: [Click here to visit the lab](https://mrsenso.github.io/IAA-cyberclub-CTF/)
 
 ---
 
@@ -34,7 +34,7 @@ This is a simple yet educational CTF (Capture The Flag) environment created with
 
 ## 🛠️ How to Use
 
-1. Open the [CTF Lab website](https://mrsenso.github.io/CTF-project/).
+1. Open the [CTF Lab website](https://mrsenso.github.io/IAA-cyberclub-CTF/).
 2. Expand the challenge section you're interested in (Simple/Medium/Hell Mode).
 3. Click on a challenge to attempt it.
 4. Capture the flag by solving the challenge and finding the hidden flag format: `flag{your_answer_here}`.
